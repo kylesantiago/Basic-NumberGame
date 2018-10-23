@@ -75,110 +75,56 @@ public class MainActivity extends AppCompatActivity {
 
         num1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(sEquation.equalsIgnoreCase("") || sEquation.split(" ").length == 2) {
-                    sEquation += num1.getText().toString() + " ";
-                    equation.setText(sEquation);
-                    num1.setEnabled(false);
-                }
-                if (sEquation.split(" ").length == 3) {
-                    performEquation();
-                }
+                choice(num1);
             }
         });
         num2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (sEquation.equalsIgnoreCase("") || sEquation.split(" ").length == 2) {
-                    sEquation += num2.getText().toString() + " ";
-                    equation.setText(sEquation);
-                    num2.setEnabled(false);
-                }
-                if (sEquation.split(" ").length == 3) {
-                    performEquation();
-                }
+                choice(num2);
             }
         });
         num3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(sEquation.equalsIgnoreCase("") || sEquation.split(" ").length == 2) {
-                    sEquation += num3.getText().toString() + " ";
-                    equation.setText(sEquation);
-                    num3.setEnabled(false);
-                }
-                if (sEquation.split(" ").length == 3) {
-                    performEquation();
-                }
+                choice(num3);
             }
         });
         num4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(sEquation.equalsIgnoreCase("") || sEquation.split(" ").length == 2) {
-                    sEquation += num4.getText().toString() + " ";
-                    equation.setText(sEquation);
-                    num4.setEnabled(false);
-                }
-                if (sEquation.split(" ").length == 3) {
-                    performEquation();
-                }
+                choice(num4);
             }
         });
         num5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(sEquation.equalsIgnoreCase("") || sEquation.split(" ").length == 2) {
-                    sEquation += num5.getText().toString() + " ";
-                    equation.setText(sEquation);
-                    num5.setEnabled(false);
-                }
-                if (sEquation.split(" ").length == 3) {
-                    performEquation();
-                }
+                choice(num5);
             }
         });
         num6.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(sEquation.equalsIgnoreCase("") || sEquation.split(" ").length == 2) {
-                    sEquation += num6.getText().toString() + " ";
-                    equation.setText(sEquation);
-                    num6.setEnabled(false);
-                }
-                if (sEquation.split(" ").length == 3) {
-                    performEquation();
-                }
+                choice(num6);
             }
         });
 
         add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(sEquation.split(" ").length == 1 && !sEquation.equalsIgnoreCase("")) {
-                    sEquation += "+ ";
-                    equation.setText(sEquation);
-                }
+                operand("+");
             }
         });
 
         sub.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(sEquation.split(" ").length == 1 && !sEquation.equalsIgnoreCase("")) {
-                    sEquation += "- ";
-                    equation.setText(sEquation);
-                }
+                operand("-");
             }
         });
 
         div.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(sEquation.split(" ").length == 1 && !sEquation.equalsIgnoreCase("")) {
-                    sEquation += "/ ";
-                    equation.setText(sEquation);
-                }
+                operand("/");
             }
         });
 
         mul.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(sEquation.split(" ").length == 1 && !sEquation.equalsIgnoreCase("")) {
-                    sEquation += "x ";
-                    equation.setText(sEquation);
-                }
+                operand("x");
             }
         });
 
@@ -215,6 +161,26 @@ public class MainActivity extends AppCompatActivity {
         });
 
         score.setText("Score: " + scoreI);
+    }
+
+    private void operand(String op){
+        if(num1.isEnabled() || num2.isEnabled() || num3.isEnabled() || num4.isEnabled() || num5.isEnabled() || num6.isEnabled()) {
+            if (sEquation.split(" ").length == 1 && !sEquation.equalsIgnoreCase("")) {
+                sEquation += op +" ";
+                equation.setText(sEquation);
+            }
+        }
+    }
+
+    private void choice(Button btn){
+        if(sEquation.equalsIgnoreCase("") || sEquation.split(" ").length == 2) {
+            sEquation += btn.getText().toString() + " ";
+            equation.setText(sEquation);
+            btn.setEnabled(false);
+        }
+        if (sEquation.split(" ").length == 3) {
+            performEquation();
+        }
     }
 
     private void performEquation(){
